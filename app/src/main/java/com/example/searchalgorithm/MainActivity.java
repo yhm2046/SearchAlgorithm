@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
     private static  String TAG="xwg";
+    @SuppressWarnings("SingleStatementInBlock")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +37,30 @@ public class MainActivity extends AppCompatActivity {
         File[] listFile=rootFolder.listFiles(); // That will return null，返回File[] listFiles
         List<String>fileList=new ArrayList<>();
         SearchUtils.recursionFile(rootFolder,fileList);
-        for(int i=0;i<fileList.size();i++){
-            Log.i(TAG,"result show:"+fileList.get(i));
-        }
+//        for(int i=0;i<fileList.size();i++) {
+//            Log.i(TAG, "result show:" + fileList.get(i));
+//        }
+//       -------------------------------------------------------------
+//  List<String>结果存储为数组String[]
+//        if(SearchUtils.recursionFile(rootFolder)!=null){
+//            int sum=SearchUtils.recursionFile(rootFolder).size();
+//            List<String>listTemp=new ArrayList<>();
+//            listTemp=SearchUtils.recursionFile(rootFolder);
+//            String []fileArrays=new String[sum];
+//            for (int i=0;i<sum;i++) {
+//                fileArrays[i] = listTemp.get(i).toString();
+//            }
+//        }
+//        else Log.i(TAG, "list is null");
+//        /////////////////////////////////////
+        List<String>testList=SearchUtils.recursionFile(rootFolder);
+        String []testArrays=SearchUtils.getArraysFromList(testList);
+        if(testArrays!=null&&testArrays.length>0){
+            for(int i=0;i<testArrays.length;i++)
+                Log.i(TAG,"print----->"+testArrays[i]);
+        }else
+            Log.i(TAG,"print null");
+
 //        if(listFile==null){
 //            Log.i(TAG,"file[] is null");
 //        }
@@ -49,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 /*******************************************/
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Log.i(TAG,"read sdcard success");
+            Log.i(TAG, "read sdcard success");
         }
 //        /storage/emulated/0
 //        String insidePath=Environment.getExternalStorageDirectory().getAbsolutePath().toString();
