@@ -34,23 +34,20 @@ public class MainActivity extends AppCompatActivity {
 //2022-01-07 17:06:39.713 2960-2960/com.example.searchalgorithm I/xwg: file------>.AutoDiu:/storage/emulated/0/.AutoDiu
         File rootFolder = Environment.getExternalStorageDirectory(); // That is working fine
         File[] listFile=rootFolder.listFiles(); // That will return null，返回File[] listFiles
-        if(listFile==null){
-            Log.i(TAG,"file[] is null");
+        List<String>fileList=new ArrayList<>();
+        SearchUtils.recursionFile(rootFolder,fileList);
+        for(int i=0;i<fileList.size();i++){
+            Log.i(TAG,"result show:"+fileList.get(i));
         }
-        else{
-            for(int i=0;i<listFile.length;i++)
-                Log.i(TAG,"file------>"+listFile[i].getName()+":"+listFile[i].getAbsolutePath());
-        }
+//        if(listFile==null){
+//            Log.i(TAG,"file[] is null");
+//        }
+//        else{
+//            for(int i=0;i<listFile.length;i++)
+//                Log.i(TAG,"file------>"+listFile[i].getName()+":"+listFile[i].getAbsolutePath());
+//        }
 
 /*******************************************/
-        int permission = ActivityCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//        if (permission != PackageManager.PERMISSION_GRANTED) {
-//            //获取读取内存权限
-//            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE,
-//                    REQUEST_EXTERNAL_STORAGE);
-//        }
-        //保存历史记录，判断SDcard是否存在并且可读写
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Log.i(TAG,"read sdcard success");
         }
@@ -67,10 +64,6 @@ public class MainActivity extends AppCompatActivity {
 //                Log.e(TAG, "文件夹创建成功");
 //            }
 //        }//end
-//        List<String>fileList=new ArrayList<>();
-//        SearchUtils.recursionFile(Folder,fileList);
-//        for(int i=0;i<fileList.size();i++){
-//            Log.i(TAG,"result show:"+fileList.get(i));
-//        }
+
     }
 }
