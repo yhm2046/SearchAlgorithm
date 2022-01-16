@@ -29,8 +29,9 @@ public class SearchUtils {
                 //具体文件类型
                 if (file.getName().endsWith(".txt")) {
                     //往图片集合中 添加图片的路径
-                    fileList.add(file.getAbsolutePath());
-                    Log.i(TAG,"txt file:"+file.getAbsolutePath()+":"+file.getName());
+//                    fileList.add(file.getAbsolutePath());
+                    fileList.add(file.getName());   //保存文件名
+//                    Log.i(TAG,"txt file:"+file.getAbsolutePath()+":"+file.getName());
                 }
             }
         }

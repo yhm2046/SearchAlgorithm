@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/******************************************/
+/***************************获取读取权限***************/
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -35,57 +35,33 @@ public class MainActivity extends AppCompatActivity {
 //2022-01-07 17:06:39.713 2960-2960/com.example.searchalgorithm I/xwg: file------>.AutoDiu:/storage/emulated/0/.AutoDiu
         File rootFolder = Environment.getExternalStorageDirectory(); // That is working fine
         File[] listFile=rootFolder.listFiles(); // That will return null，返回File[] listFiles
-        List<String>fileList=new ArrayList<>();
-        SearchUtils.recursionFile(rootFolder,fileList);
-//        for(int i=0;i<fileList.size();i++) {
-//            Log.i(TAG, "result show:" + fileList.get(i));
-//        }
-//       -------------------------------------------------------------
-//  List<String>结果存储为数组String[]
-//        if(SearchUtils.recursionFile(rootFolder)!=null){
-//            int sum=SearchUtils.recursionFile(rootFolder).size();
-//            List<String>listTemp=new ArrayList<>();
-//            listTemp=SearchUtils.recursionFile(rootFolder);
-//            String []fileArrays=new String[sum];
-//            for (int i=0;i<sum;i++) {
-//                fileArrays[i] = listTemp.get(i).toString();
-//            }
-//        }
-//        else Log.i(TAG, "list is null");
-//        /////////////////////////////////////
-        List<String>testList=SearchUtils.recursionFile(rootFolder);
-        String []testArrays=SearchUtils.getArraysFromList(testList);
-        if(testArrays!=null&&testArrays.length>0){
-            for(int i=0;i<testArrays.length;i++)
-                Log.i(TAG,"print----->"+testArrays[i]);
-        }else
-            Log.i(TAG,"print null");
+        List<String>fileList=SearchUtils.recursionFile(rootFolder); //获取list
+        String result[]=SearchUtils.getArraysFromList(fileList);    //获取所有文件的数组
+        for(int i=0;i<result.length;i++){
+//            Log.i(TAG,"-------------->"+result[i]);   //打印所有文件
+        }
+        if(result!=null&&result.length>0)
+            Log.i(TAG,"files size:"+result.length);
+// ////////////////////////////
+        long startTime = System.currentTimeMillis ();
+        String []a={"s","h","e","l","l","s","o","r","t","e","x","a","m","p","l","e","A","Z"};
+//        Insertion insertion=new Insertion(result);
+//        insertion.sort(result);
+//        insertion.show(result); //14s
+//        Selection selection=new Selection(result);
+//        selection.sort(result);
+//        selection.show(result);
+        Shell shell=new Shell(a);
+        shell.sort(a);
+        shell.show(a);
+        long endTime = System.currentTimeMillis ();
+        Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
-//        if(listFile==null){
-//            Log.i(TAG,"file[] is null");
-//        }
-//        else{
-//            for(int i=0;i<listFile.length;i++)
-//                Log.i(TAG,"file------>"+listFile[i].getName()+":"+listFile[i].getAbsolutePath());
-//        }
 
 /*******************************************/
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Log.i(TAG, "read sdcard success");
         }
-//        /storage/emulated/0
-//        String insidePath=Environment.getExternalStorageDirectory().getAbsolutePath().toString();
-//        Log.i(TAG,"inside path:"+insidePath);
-//        File Folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "data");
-//        if (!Folder.exists())
-//        {
-//            boolean mkdirs = Folder.mkdirs();
-//            if (!mkdirs) {
-//                Log.e(TAG, "文件夹创建失败");
-//            } else {
-//                Log.e(TAG, "文件夹创建成功");
-//            }
-//        }//end
 
     }
 }
