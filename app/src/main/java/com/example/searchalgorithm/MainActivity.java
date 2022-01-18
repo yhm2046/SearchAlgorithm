@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.searchalgorithm.sort.Quick;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 //        MergeBU merge=new MergeBU(result);
 //        merge.sort(result);
 //        merge.show(result); //15s
-        Quick quick=new Quick(result);
-        quick.sort(result);
+//        Quick quick=new Quick(result);
+//        quick.sort(result);
 //        quick.show(result);//22s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");

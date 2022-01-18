@@ -1,4 +1,4 @@
-package com.example.searchalgorithm;
+package com.example.searchalgorithm.sort;
 
 import android.util.Log;
 
