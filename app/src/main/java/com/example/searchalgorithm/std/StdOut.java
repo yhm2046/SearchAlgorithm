@@ -1,4 +1,4 @@
-package com.example.searchalgorithm.math; /******************************************************************************
+package com.example.searchalgorithm.std; /******************************************************************************
  *  Compilation:  javac StdOut.java
  *  Execution:    java StdOut
  *  Dependencies: none

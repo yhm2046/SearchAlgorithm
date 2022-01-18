@@ -2,9 +2,9 @@ package com.example.searchalgorithm;
 
 import android.util.Log;
 
-import com.example.searchalgorithm.math.StdIn;
-import com.example.searchalgorithm.math.StdOut;
-import com.example.searchalgorithm.math.StdRandom;
+import com.example.searchalgorithm.std.StdIn;
+import com.example.searchalgorithm.std.StdOut;
+import com.example.searchalgorithm.std.StdRandom;
 
 import java.util.Arrays;
 

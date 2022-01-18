@@ -1,4 +1,4 @@
-package com.example.searchalgorithm.math;
+package com.example.searchalgorithm.std;
 
 import java.util.Random;
 

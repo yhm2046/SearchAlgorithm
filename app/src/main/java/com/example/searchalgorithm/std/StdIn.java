@@ -1,4 +1,4 @@
-package com.example.searchalgorithm.math; /******************************************************************************
+package com.example.searchalgorithm.std; /******************************************************************************
  *  Compilation:  javac StdIn.java
  *  Execution:    java StdIn   (interactive test of basic functionality)
  *  Dependencies: none

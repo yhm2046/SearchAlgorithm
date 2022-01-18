@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 //        merge.show(result); //16s
 //        Quick quick=new Quick(result);
 //        quick.sort(result);
-//        quick.show(result);//24s
+//        quick.show(result);//13s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
