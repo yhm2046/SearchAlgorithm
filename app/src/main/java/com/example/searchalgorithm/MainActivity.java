@@ -57,9 +57,12 @@ public class MainActivity extends AppCompatActivity {
 //        Merge merge=new Merge(result);
 //        merge.sort(result);
 //        merge.show(result); //7s
-        MergeBU merge=new MergeBU(result);
-        merge.sort(result);
-        merge.show(result); //16s
+//        MergeBU merge=new MergeBU(result);
+//        merge.sort(result);
+//        merge.show(result); //16s
+//        Quick quick=new Quick(result);
+//        quick.sort(result);
+//        quick.show(result);//24s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
