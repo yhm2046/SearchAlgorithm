@@ -2,6 +2,8 @@ package com.example.searchalgorithm;
 
 import android.util.Log;
 
+import com.example.searchalgorithm.std.StdOut;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -109,10 +111,10 @@ public class Selection {
 
     // print array to standard output
     public static void show(Comparable[] a) {
-//        for (int i = 0; i < a.length; i++) {
-//            StdOut.println(a[i]);
-//        }
-        Log.i(TAG,"Selection result:"+ Arrays.toString(a));
+        for (int i = 0; i < a.length; i++) {
+            StdOut.println(a[i]);
+        }
+        Log.i(TAG,"leng:"+a.length+"\nSelection result:"+ Arrays.toString(a));
     }
 
     /**

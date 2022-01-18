@@ -3,6 +3,7 @@ package com.example.searchalgorithm;
 import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +28,12 @@ public class SearchUtils {
                 recursionFile(file,fileList);
             } else { //如果不是文件夹 则是文件
                 //具体文件类型
-                if (file.getName().endsWith(".txt")) {
+//                if (file.getName().endsWith(".txt")) {
                     //往图片集合中 添加图片的路径
 //                    fileList.add(file.getAbsolutePath());
                     fileList.add(file.getName());   //保存文件名
 //                    Log.i(TAG,"txt file:"+file.getAbsolutePath()+":"+file.getName());
-                }
+//                }
             }
         }
     }
@@ -43,7 +44,7 @@ public class SearchUtils {
      * @param dir 需要查找的路径
      * @return 文件的名字
      */
-    public static List<String> recursionFile(File dir) {
+    public static List<String> recursionFile(File dir) throws IOException {
         List<String> fileList=new ArrayList<>();
         //得到某个文件夹下所有的文件
         File[] files = dir.listFiles();
@@ -51,18 +52,18 @@ public class SearchUtils {
         if (files == null) {
             return null;
         }
-        //遍历当前文件下的所有文件
+        //递归遍历所有文件
         for (File file : files) {
             //如果是文件夹
             if (file.isDirectory()) {
                 //则递归(方法自己调用自己)继续遍历该文件夹
-                recursionFile(file,fileList);
+                recursionFile(file);
             } else { //如果不是文件夹 则是文件
-                //具体文件类型
-//                if (file.getName().endsWith(".txt")) {
-                fileList.add(file.getName());
+                Log.i(TAG,"fffffff===="+file.getAbsolutePath());
+                fileList.add(file.getName()); //获取文件名
             }
         }
+        Log.i(TAG,"all sum:"+fileList.size());
         return fileList;
     }
 //    end 遍历算法2

@@ -10,18 +10,21 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * 读取android10内部存储文件
+ * 读取android10内部存储文件中所有文件
  * 参考：https://zhuanlan.zhihu.com/p/339715212
  */
 public class MainActivity extends AppCompatActivity {
     private static  String TAG="MainActivity:xwg";
+    List<String> fileList=new ArrayList<>();    //所有文件存储的list
     @SuppressWarnings("SingleStatementInBlock")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 /***************************获取读取权限***************/
@@ -29,48 +32,71 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         }, 1); // Request permission or not, Will got same result
-//在md11设备设备上可以出现：
-//       2022-01-07 17:06:39.712 2960-2960/com.example.searchalgorithm I/xwg: file------>ota_data:/storage/emulated/0/ota_data
-//2022-01-07 17:06:39.713 2960-2960/com.example.searchalgorithm I/xwg: file------>iflytekLisence:/storage/emulated/0/iflytekLisence
-//2022-01-07 17:06:39.713 2960-2960/com.example.searchalgorithm I/xwg: file------>.AutoDiu:/storage/emulated/0/.AutoDiu
-        File rootFolder = Environment.getExternalStorageDirectory(); // That is working fine
-        File[] listFile=rootFolder.listFiles(); // That will return null，返回File[] listFiles
-        List<String>fileList=SearchUtils.recursionFile(rootFolder); //获取list
+        File rootFolder = Environment.getExternalStorageDirectory(); // mnt/sdcard/ 即为SD卡根路径
+//        Log.i(TAG,"path:"+rootFolder.getPath());    ///storage/emulated/0 和 /sdcard/ 一样
+//        Log.i(TAG,"path1:"+Environment.getExternalStorageDirectory().toString());
+        recursionFile(rootFolder);   //递归获取根目录下所有文件
+        Log.i(TAG,"fileList size=========="+fileList.size());
+//        for(int i=0;i<fileList.size();i++)
+//            Log.i(TAG,"fl-------->"+fileList.get(i).toString());
         String result[]=SearchUtils.getArraysFromList(fileList);    //获取所有文件的数组
-        for(int i=0;i<result.length;i++){
-//            Log.i(TAG,"-------------->"+result[i]);   //打印所有文件
-        }
+        Log.i(TAG,"ar size:"+result.length);
         if(result!=null&&result.length>0)
+        {
             Log.i(TAG,"files size:"+result.length);
-// ////////////////////////////
+//            for(int i=0;i<result.length;i++)
+//                Log.i(TAG,"ar-------->"+result[i]);   //打印所有文件
+        }else
+            Log.i(TAG,"get result error");
         long startTime = System.currentTimeMillis ();
         String []a={"s","h","e","l","l","s","o","r","t","e","x","a","m","p","l","e","A","Z"};
-        Selection selection=new Selection(result);
-        selection.sort(result);
-        selection.show(result); //15s
-        //          Insertion insertion=new Insertion(result);
+//        Selection selection=new Selection(result);
+//        selection.sort(result);
+////        selection.show(result); //547,57s
+//        Log.i(TAG,"0000000000000000000000000000"+ Arrays.toString(result));
+//        Insertion insertion=new Insertion(result);
 //          insertion.sort(result);
-//          insertion.show(result);   //13s
+//          insertion.show(result);   //51s
 //        Shell shell=new Shell(result);
 //        shell.sort(result);
-//        shell.show(result); //4s
+//        shell.show(result); //19s
 //        Merge merge=new Merge(result);
 //        merge.sort(result);
-//        merge.show(result); //7s
+//        merge.show(result); //15s
 //        MergeBU merge=new MergeBU(result);
 //        merge.sort(result);
-//        merge.show(result); //16s
-//        Quick quick=new Quick(result);
-//        quick.sort(result);
-//        quick.show(result);//13s
+//        merge.show(result); //15s
+        Quick quick=new Quick(result);
+        quick.sort(result);
+//        quick.show(result);//22s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
+    }   //endOnCrete
 
-/*******************************************/
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Log.i(TAG, "read sdcard success");
+    /**
+     * 递归遍历获取指定路径下的所有文件
+     * @param dir
+     * @return
+     * @throws IOException
+     */
+    ArrayList<String> recursionFile(File dir) {
+        ArrayList<String> tmpList=new ArrayList<>();
+        //得到某个文件夹下所有的文件
+        File[] files = dir.listFiles();
+        if (files==null) return null;
+        //递归遍历所有文件
+        for (File file : files) {
+            //如果是文件夹
+            if (file.isDirectory()) {
+                //则递归(方法自己调用自己)继续遍历该文件夹
+                recursionFile(file);
+            } else { //如果不是文件夹 则是文件
+//                Log.i(TAG,"fffffff===="+file.getAbsolutePath());
+                fileList.add(file.getName()); //获取文件名
+                tmpList.add(file.getName());
+            }
         }
-
-    }
+        return tmpList;
+    } //end recursionFile
 }
