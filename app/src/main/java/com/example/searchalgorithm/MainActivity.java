@@ -45,15 +45,13 @@ public class MainActivity extends AppCompatActivity {
 // ////////////////////////////
         long startTime = System.currentTimeMillis ();
         String []a={"s","h","e","l","l","s","o","r","t","e","x","a","m","p","l","e","A","Z"};
-//        Insertion insertion=new Insertion(result);
-//        insertion.sort(result);
-//        insertion.show(result); //14s
-//        Selection selection=new Selection(result);
-//        selection.sort(result);
-//        selection.show(result);
-        Shell shell=new Shell(a);
-        shell.sort(a);
-        shell.show(a);
+
+//        Shell shell=new Shell(a);
+//        shell.sort(a);
+//        shell.show(a);
+        Merge merge=new Merge(result);
+        merge.sort(result);
+        merge.show(result); //7s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
