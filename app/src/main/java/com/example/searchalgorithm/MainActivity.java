@@ -18,7 +18,7 @@ import java.util.List;
  * 参考：https://zhuanlan.zhihu.com/p/339715212
  */
 public class MainActivity extends AppCompatActivity {
-    private static  String TAG="xwg";
+    private static  String TAG="MainActivity:xwg";
     @SuppressWarnings("SingleStatementInBlock")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +45,18 @@ public class MainActivity extends AppCompatActivity {
 // ////////////////////////////
         long startTime = System.currentTimeMillis ();
         String []a={"s","h","e","l","l","s","o","r","t","e","x","a","m","p","l","e","A","Z"};
-
-//        Shell shell=new Shell(a);
-//        shell.sort(a);
-//        shell.show(a);
-        Merge merge=new Merge(result);
-        merge.sort(result);
-        merge.show(result); //7s
+        Selection selection=new Selection(result);
+        selection.sort(result);
+        selection.show(result); //15s
+        //          Insertion insertion=new Insertion(result);
+//          insertion.sort(result);
+//          insertion.show(result);   //13s
+//        Shell shell=new Shell(result);
+//        shell.sort(result);
+//        shell.show(result); //4s
+//        Merge merge=new Merge(result);
+//        merge.sort(result);
+//        merge.show(result); //7s
         long endTime = System.currentTimeMillis ();
         Log.i(TAG,"排序耗时:"+(endTime-startTime)+"s");
 
