@@ -33,7 +33,13 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         }, 1); // Request permission or not, Will got same result
         File rootFolder = Environment.getExternalStorageDirectory(); // mnt/sdcard/ 即为SD卡根路径
-//        Log.i(TAG,"path:"+rootFolder.getPath());    ///storage/emulated/0 和 /sdcard/ 一样
+        Log.i(TAG,"path root:"+rootFolder.getPath());    ///storage/emulated/0 和 /sdcard/ 一样
+        String pathU="/mnt/media_rw/12D7-8922";
+        File fileU=new File(pathU);
+        if(fileU.exists())
+            Log.i(TAG,"u is exist");
+        else
+            Log.i(TAG,"u is not exist");
 //        Log.i(TAG,"path1:"+Environment.getExternalStorageDirectory().toString());
         recursionFile(rootFolder);   //递归获取根目录下所有文件
         Log.i(TAG,"fileList size=========="+fileList.size());
