@@ -45,15 +45,16 @@
             android:exported="true">
 
         </activity>
-<!--        <receiver-->
-<!--            android:name=".USBReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="false">-->
-<!--            <intent-filter android:priority="1000">-->
-<!--                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>-->
-<!--                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <receiver
+            android:name=".USBReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+                <action android:name="com.android.example.USB_PERMISSION"/>
+            </intent-filter>
+        </receiver>
         <service
             android:name=".USBService"
             android:enabled="true"

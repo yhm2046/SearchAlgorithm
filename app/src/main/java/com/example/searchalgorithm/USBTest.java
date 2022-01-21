@@ -32,43 +32,25 @@ import java.util.List;
  */
 public class USBTest extends AppCompatActivity {
     private static final String TAG = "xwg:USBTest";
+    private static final String ACTION_USB_PERMISSION
+            = "com.android.example.USB_PERMISSION"; //自定义action
     USBReceiver receiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG,"onCreate..");
-        Intent intent=new Intent(this,USBService.class);
-        startService(intent);
-        /**
-         * 1.连接u盘
-         * 2.扫描文件
-         * 3.排序
-         * 4.查找         *
-         * */
-        String uPath=getExternalPath(this,"NORELSYS U 盘");
+//        Intent intent=new Intent(this,USBService.class);
+//        startService(intent);
+        //获取u盘文件
+/*        String uPath=getExternalPath(this,"NORELSYS U 盘");
         Log.i(TAG,"uPath--------"+uPath);
         File fileU=new File(uPath);
         if(fileU.exists())
             Log.i(TAG,"u is exist");
         else
             Log.i(TAG,"u is not exist");
-
-       //打印u盘根目录文件列表
-        searchPath();
-        try {
-            Process process = Runtime.getRuntime().exec("ls /mnt/media_rw/DA18-EBFA");
-            BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String listOfFiles = "";
-            String line;
-            while ((line = in.readLine()) != null) {
-                listOfFiles += line;
-            }
-            Log.i(TAG,"str-------->"+listOfFiles);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i(TAG,"str error:"+e.toString());
-        }
+*/
     }
 
     @Override
